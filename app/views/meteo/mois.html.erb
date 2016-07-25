@@ -1,0 +1,11 @@
+<h1> Météo du Mois </h1>
+
+<div class="row">
+    <%= line_chart MeteoMesure.group_by_day_of_month(:created_at).average(:temperature), width: "100%", height: "50%", xtitle: "Jours", ytitle: "Temp (°C)" %>
+</div>
+<div class="row">
+  <%= line_chart MeteoMesure.group_by_day_of_month(:created_at ).average(:pression), id: "Pression", width: "100%", height: "50%", xtitle: "Jours", ytitle: "Pres (hPa)", min: 980, max: 1030 %>
+</div>
+<div class="row">
+   <%= line_chart MeteoMesure.group_by_day_of_month(:created_at).average(:humidite), id: "Humidité", width: "100%", height: "50%", xtitle: "Jours", ytitle: "Humidité (%)", min: 0, max: 100 %>
+</div>   

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 
+  lumiere: 
+  temperature: 
+  pression: 
+  humidite: 
+  pluie: 
+
+two:
+  id: 
+  lumiere: 
+  temperature: 
+  pression: 
+  humidite: 
+  pluie: 

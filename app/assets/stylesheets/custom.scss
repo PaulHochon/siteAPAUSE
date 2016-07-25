@@ -1,0 +1,47 @@
+p{
+	text-align: left;
+	font-family: sans-serif;
+	font-size: 14px;
+}
+
+h1{
+	color: rgb(255, 204, 0);
+	text-shadow:0 0 1px #000000;
+	text-decoration: underline;
+	font-size: 45px;
+	text-align: center;
+	font-family: cursive;
+}
+
+h2{
+	color: blue;
+	text-shadow:0 0 1px #000000;
+	text-decoration: underline;
+	font-size: 45px;
+	text-align: center;
+	font-family: cursive;
+}
+
+h3{
+	color: green;
+	text-shadow:0 0 1px #000000;
+	text-decoration: underline;
+	font-family: cursive;
+}
+
+body{
+	background: rgb(204,230,255);
+}
+
+.col-xs-6{
+    width: 40%;
+    border: 5px solid gray;
+    padding: 25px;
+    margin: 25px;
+    border-radius: 25px;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+img{
+	border-radius: 6px;
+	text-align:right;}

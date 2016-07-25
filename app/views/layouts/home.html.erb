@@ -1,0 +1,86 @@
+<!-- page d'accueil du site web -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "SiteAPAUSE" %></title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <!-- Size should be 144 x 144 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+    <!-- For iPhone with high-resolution Retina display: -->
+    <!-- Size should be 114 x 114 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+    <!-- For first- and second-generation iPad: -->
+    <!-- Size should be 72 x 72 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <!-- Size should be 57 x 57 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+    <!-- inclusion des fichiers javascripts utilisés : 1) ?? 2) graphiques-->
+    <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "chartkick" %>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <!-- NavBar horizontal statique en haut de l'écran -->
+    <div class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">SiteAPAUSE</a>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Météo <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Météo", meteo_index_path %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to "Jour", meteo_jour_path %></li>
+                <li><%= link_to "Mois", meteo_mois_path %></li>
+                <li><%= link_to "Année", meteo_annee_path %></li>
+              </ul>
+            <li class="dropdown">
+              <a href="/" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Aquaponie <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><%= link_to "Aquaponie", aquaponie_index_path %></li>
+                <li role="separator" class="divider"></li>
+                <li><%= link_to "Jour", aquaponie_jour_path %></li>
+                <li><%= link_to "Mois", aquaponie_mois_path %></li>
+                <li><%= link_to "Année", aquaponie_annee_path %></li>
+              </ul>
+            <li><%= link_to "Contact", "/path3"  %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- insertion du code correspondant à la page d'accueil : "siteAPAUSE/app/views/home/index.html.erb" ou "/jour.html.erb", etc... -->
+    <div id="main-container" class="container"> 
+          <%= bootstrap_flash %>
+          <%= yield %>
+    </div> <!-- /container -->
+
+  </body>
+</html>

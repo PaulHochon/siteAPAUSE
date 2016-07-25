@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  circulation: 
+  pH: 1.5
+  niveau: 
+
+two:
+  circulation: 
+  pH: 1.5
+  niveau: 

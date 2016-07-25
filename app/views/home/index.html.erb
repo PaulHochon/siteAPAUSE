@@ -1,0 +1,65 @@
+<!-- code à insérer dans le code HTML de la page d'accueil du site -->
+
+<div class="row">
+	<!-- Box de gauche -->
+   <div class="col-xs-6">
+   		<!-- informations sur la météo -->
+		<h1> Météo : </h1>
+		<br/>
+		<p>				<!-- interprétation des données avec des images pour mieux les apprécier -->
+			Lumière : 	<% if @meteo_mesures[:lumiere]<=200 %>
+							<%= "nuit" %>
+							<%= image_tag("noir_nuit.png", :align=> "right") %>
+						<% elsif (@meteo_mesures[:lumiere]<=400 && @meteo_mesures[:lumiere]>200) %>
+							<%= " très sombre" %>
+							<%= image_tag("gris_tres_sombre.png", :align=> "right") %>
+						<% elsif (@meteo_mesures[:lumiere]<=800 && @meteo_mesures[:lumiere]>400) %>
+							<%= "sombre" %>
+							<%= image_tag("gris_sombre.png", :align=> "right") %>
+						<% elsif (@meteo_mesures[:lumiere]<=930 && @meteo_mesures[:lumiere]>800) %>
+							<%= "lumineux" %> 
+							<%= image_tag("blanc_lumineux.png", :align=> "right") %>	
+						<% elsif (@meteo_mesures[:lumiere]<=1000 && @meteo_mesures[:lumiere]>930) %>
+							<%= "très lumineux" %>
+							<%= image_tag("jaune_tres_lumineux.png", :align=> "right") %>
+						<% else %>
+							<%= "grand Soleil" %>
+							<%= image_tag("jaune_grand_soleil.png", :align=> "right") %>
+						<% end %> 
+					</br>
+			Température : <%=  @meteo_mesures[:temperature] %> °C <br/>
+			Pression : <%=  @meteo_mesures[:pression] %> hPa <br/>
+			Humidité : <%=  @meteo_mesures[:humidite] %>% <br/>
+
+
+			<% if @meteo_mesures[:pluie]==0 %> 
+							<%= "Il pleut" %>
+							<%= image_tag("pluie.png", :align=> "right") %>
+						<% elsif @meteo_mesures[:pluie]==1 %>
+							<%= "Risques de pluie" %>
+							<%= image_tag("risque_pluie.png", :align=> "right") %>
+						<% else %>
+							<%= "Il ne pleut pas" %>
+							<%= image_tag("soleil.png", :align=> "right") %>
+						<% end %>	
+						<br/>
+		</p>
+	</div>
+	<!-- Box de droite similaire à celle de gauche -->
+	<div class="col-xs-6">
+		<h2> Aquaponie : </h2>
+		<p>
+			Pompe :<% if (@aquaponie_mesures[:circulation]>200) %>
+											<%= "OK." %>
+											<%= image_tag("checkmark.png", :align=> "right") %>
+										<% else %>
+											<%= "Dysfonctionnement." %>
+											<%= image_tag("danger.png", :align=> "right") %>
+										<% end %>
+									</br>
+			pH : <%= @aquaponie_mesures[:pH] %>
+		</br>
+			Niveau d'eau : <%= @aquaponie_mesures[:niveau] %> cm
+		</p>
+	</div>
+</div>

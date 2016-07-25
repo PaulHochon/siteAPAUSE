@@ -1,0 +1,41 @@
+<div class="row">
+   <div id="leftside" class="col-xs-6">
+		<h1> Météo : </h1>
+		<br/>
+		<p>	
+			Lumière : 	<% if @meteo_mesures[:lumiere]<=200 %>
+							<%= "nuit" %>
+						<% elsif (@meteo_mesures[:lumiere]<=400 && @meteo_mesures[:lumiere]>200) %>
+							<%= " très sombre" %>
+						<% elsif (@meteo_mesures[:lumiere]<=800 && @meteo_mesures[:lumiere]>400) %>
+							<%= "sombre" %>
+						<% elsif (@meteo_mesures[:lumiere]<=930 && @meteo_mesures[:lumiere]>800) %>
+							<%= "lumineux" %>
+						<% elsif (@meteo_mesures[:lumiere]<=1000 && @meteo_mesures[:lumiere]>930) %>
+							<%= "très lumineux" %>
+						<% else %>
+							<%= "grand Soleil" %>
+						<% end %> 
+					</br>
+			Température : <%=  @meteo_mesures[:temperature] %> °C <br/>
+			Pression : <%=  @meteo_mesures[:pression] %> hPa <br/>
+			Humidité : <%=  @meteo_mesures[:humidite] %>% <br/>
+
+
+			Pluie : 	<% if @meteo_mesures[:pluie]==0 %> 
+							<%= "il pleut" %>
+						<% elsif @meteo_mesures[:pluie]==1 %>
+							<%= "risques de pluie" %>
+						<% else %>
+							<%= "il ne pleut pas" %>
+						<% end %>	
+						<br/>
+		</p>
+	</div>
+	<div id="rightside" class="col-xs-6">
+		<h3> Informations : </h3>
+		<p>
+
+		</p>
+	</div>
+</div>

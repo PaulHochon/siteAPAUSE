@@ -1,0 +1,8 @@
+<h2> Sur le mois </h2>
+
+<div class="row">
+    <%= line_chart AquaponieMesure.group_by_day_of_month(:created_at).average(:pH), width: "100%", height: "50%", xtitle: "Temps (h)", ytitle: "pH" %>
+</div>
+<div class="row">
+  <%= line_chart AquaponieMesure.group_by_day_of_month(:created_at).average(:niveau), id: "Niveau", width: "100%", height: "50%", xtitle: "Temps (h)", ytitle: "Niveau (cm)", min: 0, max: 40 %>
+</div>

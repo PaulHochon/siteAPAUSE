@@ -1,0 +1,33 @@
+<div class="row">
+	<!-- Box de gauche  même principe que la page d'accueil -->
+  <div class="col-xs-6">
+		<h1> Aquaponie </h1>
+		<p>
+			Pompe :<% if (@aquaponie_mesures[:circulation]>200) %>
+											<%= "OK." %>
+											<%= image_tag("checkmark.png", :align=> "right") %>
+										<% else %>
+											<%= "Dysfonctionnement." %>
+											<%= image_tag("danger.png", :align=> "right") %>
+										<% end %>
+									</br>
+			pH : <%= @aquaponie_mesures[:pH] %>
+		</br>
+			Niveau d'eau : <%= @aquaponie_mesures[:niveau] %> cm
+		</p>
+	</div>
+
+	<!-- Box de droite contenant des informations générales -->
+	<div class="col-xs-6">
+		<h3> Informations : </h3>
+		<p>
+		</p>
+	</div>
+</div>
+
+<div class="row">
+    <%= line_chart AquaponieMesure.group_by_hour(:created_at, range: 24.hours.ago..Time.now).average(:pH), width: "100%", height: "50%", xtitle: "Temps (h)", ytitle: "pH" %>
+</div>
+<div class="row">
+  <%= line_chart AquaponieMesure.group_by_hour(:created_at, range: 24.hours.ago..Time.now).average(:niveau), id: "Niveau", width: "100%", height: "50%", xtitle: "Temps (h)", ytitle: "Niveau (cm)", min: 0, max: 40 %>
+</div>

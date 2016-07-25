@@ -1,0 +1,65 @@
+<!-- Code à insérer dans la page HTML de la météo -->
+
+<div class="row">
+	<!-- Box de gauche  même principe que la page d'accueil -->
+  <div class="col-xs-6">
+		<h1> Météo </h1>
+		<br/>
+		<p>	
+			Lumière : 	<% if @meteo_mesures[:lumiere]<=200 %>
+							<%= "nuit" %>
+							<%= image_tag("noir_nuit.png", :align=> "right") %>
+						<% elsif (@meteo_mesures[:lumiere]<=400 && @meteo_mesures[:lumiere]>200) %>
+							<%= " très sombre" %>
+							<%= image_tag("gris_tres_sombre.png", :align=> "right") %>
+						<% elsif (@meteo_mesures[:lumiere]<=800 && @meteo_mesures[:lumiere]>400) %>
+							<%= "sombre" %>
+							<%= image_tag("gris_sombre.png", :align=> "right") %>
+						<% elsif (@meteo_mesures[:lumiere]<=930 && @meteo_mesures[:lumiere]>800) %>
+							<%= "lumineux" %> 
+							<%= image_tag("blanc_lumineux.png", :align=> "right") %>	
+						<% elsif (@meteo_mesures[:lumiere]<=1000 && @meteo_mesures[:lumiere]>930) %>
+							<%= "très lumineux" %>
+							<%= image_tag("jaune_tres_lumineux.png", :align=> "right") %>
+						<% else %>
+							<%= "grand Soleil" %>
+							<%= image_tag("jaune_grand_soleil.png", :align=> "right") %>
+						<% end %> 
+					</br>
+			Température : <%=  @meteo_mesures[:temperature] %> °C <br/>
+			Pression : <%=  @meteo_mesures[:pression] %> hPa <br/>
+			Humidité : <%=  @meteo_mesures[:humidite] %>% <br/>
+
+
+			<% if @meteo_mesures[:pluie]==0 %> 
+							<%= "Il pleut" %>
+							<%= image_tag("pluie.png", :align=> "right") %>
+						<% elsif @meteo_mesures[:pluie]==1 %>
+							<%= "Risques de pluie" %>
+							<%= image_tag("risque_pluie.png", :align=> "right") %>
+						<% else %>
+							<%= "Il ne pleut pas" %>
+							<%= image_tag("soleil.png", :align=> "right") %>
+						<% end %>	
+						<br/>
+		</p>
+	</div>
+
+	<!-- Box de droite contenant des informations générales -->
+	<div class="col-xs-6">
+		<h3> Informations : </h3>
+		<p>
+		</p>
+	</div>
+</div>
+
+	    <!-- Ajout de graphiques journaliers à la page -->
+<div class="row">
+    <%= line_chart MeteoMesure.group_by_hour(:created_at, range: 24.hours.ago..Time.now).average(:temperature), width: "100%", height: "50%", xtitle: "Temps (h)", ytitle: "Temp (°C)" %>
+</div>
+<div class="row">
+  <%= line_chart MeteoMesure.group_by_hour(:created_at, range: 24.hours.ago..Time.now).average(:pression), id: "Pression", width: "100%", height: "50%", xtitle: "Temps (h)", ytitle: "Pres (hPa)", min: 980, max: 1030 %>
+</div>
+<div class="row">
+   <%= line_chart MeteoMesure.group_by_hour(:created_at, range: 24.hours.ago..Time.now).average(:humidite), id: "Humidité", width: "100%", height: "50%", xtitle: "Temps (h)", ytitle: "Humidité (%)", min: 0, max: 100 %>
+</div>            
